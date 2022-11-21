@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "main.h"
-
 /**
  * _printf - prints a string
  * @format: string to print (char *)
@@ -28,42 +27,38 @@ int _printf(const char *format, ...)
 	{
 		return (-1);
 	}
-
 	/*prints string characters*/
 	while (format[i])
 	{
-		if (format[i] != '%')
-		{
-			value = write(1, &format[i], 1);
-			count = count + value;
-			i++;
-			continue;
-		}
-
-		if (format[i] == '%')
-		{
-			f = check_specifier(&format[i + 1]);
-			if (f != NULL)
-			{
-				value = f(args);
-				count = count + value;
-				i = i + 2;
-				continue;
-			}
-
-			if (format[i + 1] == '\0')
-			{
-				break;
-			}
-
-			if (format[i + 1] != '\0')
-			{
-				value = write(1, &format[i + 1], 1);
-				count = count + value;
-				i = i + 2;
-				continue;
-			}
-		}
+	if (format[i] != '%')
+	{
+	value = write(1, &format[i], 1);
+	count = count + value;
+	i++;
+	continue;
+	}
+	if (format[i] == '%')
+	{
+	f = check_specifier(&format[i + 1]);
+	if (f != NULL)
+	{
+	value = f(args);
+	count = count + value;
+	i = i + 2;
+	continue;
+	}
+	if (format[i + 1] == '\0')
+	{
+	break;
+	}
+	if (format[i + 1] != '\0')
+	{
+	value = write(1, &format[i + 1], 1);
+	count = count + value;
+	i = i + 2;
+	continue;
+	}
+	}
 	}
 	return (count);
 }

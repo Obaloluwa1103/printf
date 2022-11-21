@@ -7,13 +7,13 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-int (*check_specifier(const char*))(va_list);
+int (*check_specifier(const char *))(va_list);
 
 /**
- * struct func - prints specifiers
- * @t: character to compare
- * @f: handles printing
- */
+*struct func - prints specifiers
+*@t: character to compare
+*@f: handles printing
+*/
 
 typedef struct func
 {
